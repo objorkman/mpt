@@ -15,7 +15,7 @@ for t in threads:
     times = []
     for i in range(3):
         start = timer()
-        os.system('OMP_NUM_THREADS=' + str(t) + ' build/Release/nao_cup_planning-KDTreeBatch-double-mt -S')
+        os.system('OMP_NUM_THREADS=' + str(t) + ' build/Release/se3_rigid_body_planning-KDTreeBatch-double-mt -S /omplapp/resources/3D/Twistycool.cfg')
         end = timer()
         times.append(end - start) 
     
