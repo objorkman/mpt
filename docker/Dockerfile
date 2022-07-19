@@ -28,7 +28,7 @@ RUN ninja
 RUN ninja install
 
 WORKDIR /
-RUN git clone https://github.com/UNC-Robotics/mpt.git
+RUN git clone https://github.com/objorkman/mpt.git
 RUN git clone https://github.com/UNC-Robotics/nigh.git \
     && cd nigh && mv src/nigh /usr/include/c++/7.5.0
 
