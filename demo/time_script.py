@@ -10,23 +10,23 @@ def percentile(data, perc):
 result= []
 data = []
 threads = [1, 2, 4, 8, 16, 32, 48]
+percents = [25, 50, 75, 95, 99]
 
 for t in threads:
     times = []
-    for i in range(3):
+    for i in range(50):
         start = timer()
-        os.system('OMP_NUM_THREADS=' + str(t) + ' build/Release/se3_rigid_body_planning-KDTreeBatch-double-mt -S /omplapp/resources/3D/Twistycool.cfg')
+        os.system('OMP_NUM_THREADS=' + str(t) + ' build/Release/se3_rigid_body_planning-GNAT-double-mt -S /omplapp/resources/3D/Twistycool.cfg')
         end = timer()
         times.append(end - start) 
     
-    percents = [25, 50, 75, 95, 99]
     result.append([sum(times) / len(times)] + [percentile(times, p) for p in percents])
     
     data.append(times)
 
 with open('result.csv', 'w', newline='') as file:
     writer = csv.writer(file, delimiter=',')
-    writer.writerow(['mean'] + [str(t) for t in threads])
+    writer.writerow(['mean'] + [str(p) for p in percents])
     writer.writerows(result)
 
 with open('data.csv', 'w', newline='') as file:

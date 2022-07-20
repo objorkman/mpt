@@ -16,7 +16,7 @@ WORKDIR fcl/
 RUN git checkout f15ffc
 RUN mkdir -p build/Release
 WORKDIR build/Release
-RUN apt-get install -y gpg wget
+RUN apt-get install -y gpg wget vim
 RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
 RUN echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ bionic main' | tee /etc/apt/sources.list.d/kitware.list >/dev/null
 RUN apt-get update
@@ -28,6 +28,7 @@ RUN ninja
 RUN ninja install
 
 WORKDIR /
+RUN git clone https://github.com/ompl/omplapp.git
 RUN git clone https://github.com/objorkman/mpt.git
 RUN git clone https://github.com/UNC-Robotics/nigh.git \
     && cd nigh && mv src/nigh /usr/include/c++/7.5.0
