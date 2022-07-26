@@ -1,0 +1,13 @@
+services:
+    solver:
+        image: test_mpt:latest
+        tty: true
+        volumes:
+            - ~/datasets:/data
+            - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+    default:
+        driver: bridge
+        name: solvenet
+

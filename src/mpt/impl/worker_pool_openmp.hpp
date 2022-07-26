@@ -107,7 +107,7 @@ namespace unc::robotics::mpt::impl {
             auto unsolving = finally([&]() { solving_ = false; });
 
             unsigned nThreads = size();
-            MPT_LOG(INFO) << "solving with " << nThreads << " threads";
+            MPT_LOG(INFO) << "solving with " << nThreads << " threads using openmp";
             if (nThreads == 1) {
                 workers_[0].solve(context, doneFn);
             } else {
