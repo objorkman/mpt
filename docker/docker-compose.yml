@@ -5,6 +5,9 @@ services:
         volumes:
             - ~/datasets:/data
             - /var/run/docker.sock:/var/run/docker.sock
+        command:
+            - /bin/bash
+            - python3 /mpt/demo/time_script.py
 
 networks:
     default:

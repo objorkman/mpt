@@ -3,7 +3,8 @@ LABEL maintainer="Oscar Bjorkman <oscarb@berkeley.edu>"
 
 RUN apt update
 
-RUN apt-get install -y software-properties-common git libpng-dev zlib1g-dev
+RUN apt-get install -y software-properties-common git libpng-dev zlib1g-dev python3-pip
+RUN pip3 install docker-py
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
 
 RUN apt update
@@ -30,8 +31,7 @@ RUN ninja install
 WORKDIR /
 RUN git clone https://github.com/ompl/omplapp.git
 RUN git clone https://github.com/objorkman/mpt.git
-RUN git clone https://github.com/UNC-Robotics/nigh.git \
-    && cd nigh && mv src/nigh /usr/include/c++/7.5.0
+RUN git clone https://github.com/UNC-Robotics/nigh.git 
 
 WORKDIR /
 RUN cd mpt/demo && mkdir -p build/Release && cd build/Release \
